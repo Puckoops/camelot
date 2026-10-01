@@ -1,0 +1,23 @@
+.code {
+  min-width: 0;
+  border: var(--border-w) solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--space-8);
+  padding: var(--space-1) var(--space-1) 0 var(--space-4);
+}
+.pre {
+  margin: 0;
+  padding: 0 var(--space-4) var(--space-4);
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 2;
+  color: var(--text-1);
+}
+.pre code { font: inherit; }

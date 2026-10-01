@@ -1,0 +1,11 @@
+node_modules
+dist
+.next
+*.tsbuildinfo
+.DS_Store
+*.tgz
+.vercel
+next-env.d.ts
+apps/site/generated
+.claude/
+.cursor/

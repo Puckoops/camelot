@@ -1,0 +1,48 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: var(--card-min-h);
+  padding: var(--space-6);
+  border: var(--border-w) solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  color: var(--text-1);
+}
+.flush { padding: 0; overflow: hidden; }
+.interactive { cursor: pointer; transition: box-shadow var(--dur-2) var(--ease-in-out), border-color var(--dur-2) var(--ease-in-out); }
+.interactive:hover { box-shadow: var(--shadow-raised); border-color: var(--hairline-strong); }
+.buttonReset { width: 100%; font: inherit; text-align: left; }
+
+.figure { gap: 0; }
+.figureHead { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.figureValue { margin-top: var(--space-4); }
+.figureCaption { max-width: 34ch; margin-top: var(--space-3); color: var(--text-2); }
+.figureFooter { margin-top: auto; padding-top: var(--space-6); }
+
+.list { gap: var(--space-4); }
+.listCaption { margin-top: 2px; color: var(--text-3); }
+.rows { display: flex; flex-direction: column; }
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 11px 0;
+  border-bottom: var(--border-w) solid var(--hairline);
+}
+.rowLabel { font-size: 13px; line-height: 18px; color: var(--text-2); }
+.rowValue { color: var(--text-1); text-align: right; }
+.listFooter { margin-top: auto; }
+
+.meter { gap: var(--space-3); min-height: 0; }
+
+.action { gap: var(--space-3); justify-content: flex-start; min-height: 0; color: var(--text-1); }
+.actionIcon { color: var(--text-3); }
+.actionSlot { margin-top: auto; padding-top: var(--space-2); }
+.centered { align-items: center; text-align: center; justify-content: center; padding: var(--space-10) var(--space-6); }
+
+.media { min-height: 0; }
+.mediaFrame { overflow: hidden; border-bottom: var(--border-w) solid var(--hairline); background: var(--surface-2); }
+.mediaBody { display: flex; flex-direction: column; gap: 4px; padding: var(--space-6); }

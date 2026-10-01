@@ -1,0 +1,52 @@
+.linear { display: grid; align-items: center; min-width: 0; }
+.top { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "label value" "track track"; gap: var(--space-2) var(--space-3); }
+.side { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "label track value"; gap: var(--space-3); }
+.top .label { grid-area: label; }
+.top .value { grid-area: value; }
+.top .track { grid-area: track; }
+.side .label { grid-area: label; }
+.side .track { grid-area: track; }
+.side .value { grid-area: value; }
+.noLabel.top, .noLabel.side { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "track value"; gap: var(--space-3); }
+
+.label { font-size: 12px; line-height: 17px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.value { color: var(--text-2); text-align: right; white-space: nowrap; }
+
+.track { position: relative; width: 100%; overflow: hidden; border-radius: var(--radius-full); background: var(--series-track); }
+.default { height: 6px; }
+.thin { height: 4px; }
+
+.fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--text-1);
+  transform: translateX(-100%);
+  transition: transform var(--dur-4) var(--ease-out);
+}
+
+.indeterminate .fill {
+  right: auto;
+  width: 36%;
+  transition: none;
+  animation: pk-progress-slide 1400ms var(--ease-in-out) infinite;
+}
+@keyframes pk-progress-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(280%); }
+}
+
+.circle { display: inline-flex; align-items: center; gap: var(--space-2); min-width: 0; }
+.ring { position: relative; display: inline-grid; place-items: center; flex: none; }
+.ring > svg { display: block; }
+.ringTrack { stroke: var(--series-track); }
+.ringFill { stroke: var(--text-1); }
+.ringValue { position: absolute; inset: 0; display: grid; place-items: center; color: var(--text-1); }
+.spinning > svg { animation: pk-progress-spin 900ms linear infinite; }
+@keyframes pk-progress-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fill { transition: none; }
+  .indeterminate .fill { animation: none; width: 100%; transform: none; opacity: 0.3; }
+  .spinning > svg { animation: none; }
+}

@@ -1,0 +1,20 @@
+.wrap { display: inline-flex; align-items: center; gap: 8px; min-height: 20px; }
+.disabled { opacity: 0.55; }
+.box {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: var(--border-w) solid var(--border-control);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--emphasis-on);
+  cursor: pointer;
+  transition: background-color var(--dur-1) linear, border-color var(--dur-1) linear;
+}
+.box[data-state="checked"] { background: var(--emphasis); border-color: var(--emphasis); }
+.box:disabled { cursor: default; }
+.indicator { display: inline-flex; }
+.label { font-size: 13px; line-height: 18px; color: var(--text-2); cursor: pointer; user-select: none; }

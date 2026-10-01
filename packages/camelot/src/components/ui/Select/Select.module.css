@@ -1,0 +1,65 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  border: var(--border-w) solid var(--border-control);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--text-1);
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  transition: border-color var(--dur-2) var(--ease-in-out), background-color var(--dur-2) var(--ease-in-out);
+}
+.trigger > span:first-child { overflow: hidden; text-overflow: ellipsis; }
+.trigger[data-placeholder] { color: var(--text-4); }
+.trigger:disabled { opacity: 0.55; cursor: default; }
+.trigger[aria-invalid="true"] { border-color: var(--red-700); }
+
+.field { width: 100%; height: var(--control-h); padding: 0 10px 0 12px; background: var(--surface-2); }
+.field:hover:not(:disabled) { border-color: var(--text-3); }
+
+.filter { height: 32px; padding: 0 10px 0 12px; background: var(--surface); color: var(--text-2); }
+.filter[data-placeholder] { color: var(--text-2); }
+.filter:hover:not(:disabled) { background: var(--surface-2); color: var(--text-1); }
+
+.chevron { display: inline-flex; color: var(--text-4); flex: none; }
+
+.content {
+  z-index: 60;
+  min-width: var(--radix-select-trigger-width);
+  max-height: min(360px, var(--radix-select-content-available-height));
+  overflow: hidden;
+  border: var(--border-w) solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-overlay);
+  transform-origin: var(--radix-select-content-transform-origin);
+  animation: pk-select-in var(--dur-2) var(--ease-out);
+}
+@keyframes pk-select-in { from { opacity: 0; transform: translateY(-4px) scale(0.98); } }
+
+.viewport { padding: 4px; }
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 32px 0 10px;
+  border-radius: var(--radius-xs);
+  font-size: 13px;
+  color: var(--text-2);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+.item[data-highlighted] { background: var(--surface-3); color: var(--text-1); }
+.item[data-state="checked"] { color: var(--text-1); font-weight: 500; }
+.item[data-disabled] { opacity: 0.5; cursor: default; }
+.indicator { position: absolute; right: 10px; display: inline-flex; color: var(--text-1); }

@@ -1,0 +1,30 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border: var(--border-w) solid transparent;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  line-height: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color var(--dur-2) var(--ease-in-out), color var(--dur-2) var(--ease-in-out);
+}
+
+.label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+.neutral { background: var(--surface-2); border-color: var(--hairline); color: var(--text-3); }
+.teal { background: var(--teal-050); border-color: var(--teal-100); color: var(--teal-700); }
+.blue { background: var(--blue-050); border-color: var(--blue-100); color: var(--blue-700); }
+.amber { background: var(--amber-050); border-color: var(--amber-100); color: var(--amber-700); }
+.red { background: var(--red-050); border-color: var(--red-100); color: var(--red-700); }
+
+:global([data-theme="dark"]) .teal { background: var(--teal-900); border-color: var(--teal-800); color: var(--teal-300); }
+:global([data-theme="dark"]) .blue { background: var(--blue-900); border-color: var(--blue-800); color: var(--blue-300); }
+:global([data-theme="dark"]) .amber { background: var(--amber-900); border-color: var(--amber-800); color: var(--amber-300); }
+:global([data-theme="dark"]) .red { background: var(--red-900); border-color: var(--red-800); color: var(--red-300); }
+
+.struck { opacity: 0.7; }
+.struck .label { text-decoration: line-through; }

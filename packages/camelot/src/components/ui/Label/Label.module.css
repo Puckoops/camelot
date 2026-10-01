@@ -1,0 +1,13 @@
+.label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: 12px;
+  line-height: 17px;
+  color: var(--text-3);
+  cursor: default;
+  user-select: none;
+}
+.label[for] { cursor: pointer; }
+.required { color: var(--text-2); }
+.optional { margin-left: var(--space-1); color: var(--text-4); }

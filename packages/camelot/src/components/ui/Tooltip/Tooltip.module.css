@@ -1,0 +1,13 @@
+.content {
+  z-index: 70;
+  max-width: 280px;
+  padding: 6px 9px;
+  border-radius: var(--radius-xs);
+  background: var(--text-1);
+  color: var(--emphasis-on);
+  font-size: 12px;
+  line-height: 16px;
+  box-shadow: var(--shadow-overlay);
+  animation: pk-tip-in var(--dur-2) var(--ease-out);
+}
+@keyframes pk-tip-in { from { opacity: 0; transform: translateY(2px); } }

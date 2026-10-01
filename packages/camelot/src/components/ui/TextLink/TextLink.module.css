@@ -1,0 +1,6 @@
+.link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; line-height: 18px; color: var(--text-2); }
+.link:hover { color: var(--text-1); }
+.link span { text-decoration: underline; text-decoration-color: var(--hairline-strong); text-underline-offset: 3px; }
+.link:hover span { text-decoration-color: currentColor; }
+.forward { transition: transform var(--dur-2) var(--ease-out); }
+.link:hover .forward { transform: translateX(2px); }

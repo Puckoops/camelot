@@ -1,127 +1,74 @@
 # Camelot
 
-**Camelot** is the Puckoops design system, packaged for React as `@puckoops/camelot`: tokens, type, and the
-components Puckoops products are built from. Orbit is the first product on it; the package holds nothing
-Orbit-specific, so another product can use it as-is.
+Camelot is the Puckoops design system: the React package `@puckoops/camelot`, its documentation site, and an
+MCP server that gives AI coding assistants the same catalogue. The site is a Next.js app that deploys to Vercel;
+the package is what products such as Orbit install.
 
-> **Chrome is achromatic. State is chromatic. Layout carries the design — not colour.**
+## What is in the repo
 
-- Light is the default theme; dark is a toggle (`data-theme="dark"` on `<html>`).
-- There is no accent hue. Emphasis is ink. Four hues — teal, blue, amber, red — mean state, and only the system's state components draw them.
-- A screen is composed from bands on a 12-column grid, with card archetypes rather than stacked tables.
+| Path | What it is |
+| --- | --- |
+| `packages/camelot` | `@puckoops/camelot`: tokens, type and components, built with tsup into `dist/`. This is all a product installs. |
+| `packages/camelot-mcp` | The MCP tools, the catalogue builder, and a standalone server for editors (stdio) and self-hosting (HTTP, Docker). |
+| `apps/site` | The Next.js site, laid out like the Storybook it replaced: a sidebar of components with their docs pages and stories, a toolbar, and an addon panel on each story. Also the design tokens, the MCP guide and the `/mcp` endpoint. Deployed to Vercel. |
 
-The tokens come from the design-system artifact Camelot was drawn in (published as ORBIT v3):
-`src/styles/tokens.css` is its compiled `tokens.css` plus the motion durations and easings from its Motion
-section. The one deliberate difference is that `.caps` is set in the mono face, which is what the shipping
-prototype does.
+## Where the content lives
 
-## Install
+There is no database. Every page and every MCP answer is compiled from files in this repo when the site builds.
 
-The package is consumed straight from its repository; `npm install` builds it through `prepare`.
+| Content | Source |
+| --- | --- |
+| Component summaries, when to use, alternatives, keywords, categories | `packages/camelot/src/catalog/components.ts` |
+| Hard rules, element mapping, icons guide, app setup | `packages/camelot/src/catalog/rules.ts` |
+| Props, defaults, allowed values, hook signatures | The component sources in `packages/camelot/src`, read by the TypeScript compiler |
+| Colour, type, spacing, radius and motion tokens | `packages/camelot/src/styles/*.css` |
+| Each page's examples: preview, code and controls | `apps/site/src/content/**/*.docs.tsx` |
+| Introduction, token pages and the MCP guide | `apps/site/src/components/{intro,tokens/pages,mcp}`, routed from `apps/site/src/app` |
 
-```bash
-npm install github:LooneY2K/camelot#v0.1.0
-```
-
-While developing it next to an app, install a packed build rather than a symlink, so the app keeps a
-single copy of React:
-
-```bash
-npm run build && npm pack
-cd ../orbit-fe && npm install ../camelot/puckoops-camelot-0.1.0.tgz
-```
-
-Peer dependencies: `react` and `react-dom` 19.
-
-## Use
-
-```tsx
-// app/layout.tsx (Next.js)
-import "@puckoops/camelot/styles.css";
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider, Toaster, TooltipProvider, themeScript } from "@puckoops/camelot";
-
-const sans = Instrument_Sans({ subsets: ["latin"], variable: "--pk-sans" });
-const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--pk-serif" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--pk-mono" });
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" data-theme="light" className={`${sans.variable} ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
-      <body>
-        <ThemeProvider>
-          <TooltipProvider>
-            {children}
-            <Toaster />
-          </TooltipProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
-```
-
-`next/font` hashes family names, so point the tokens at its variables once, after the stylesheet:
-
-```css
-:root {
-  --font-sans: var(--pk-sans), system-ui, sans-serif;
-  --font-display: var(--pk-serif), Georgia, serif;
-  --font-mono: var(--pk-mono), ui-monospace, monospace;
-}
-```
-
-Without `next/font`, load the three families from Google Fonts and the tokens pick them up by name.
-
-`@puckoops/camelot/tokens.css` ships the custom properties alone, for surfaces that want the palette without
-the components.
-
-## What is in it
-
-| Group | Components |
-|---|---|
-| Foundations | `tokens.css`, type classes (`.hero-xl` … `.num-sm`, `.caps`, `.text-1`…`.text-4`), `.reveal`, `ThemeProvider`, `useTheme`, `themeScript`, `Icon` |
-| Status | `Chip` (tone + frozen `Glyph`), `Glyph`, `PriorityMark`, `Badge` |
-| Actions | `Button` (primary · ghost · quiet), `IconButton`, `TextLink`, `Menu` |
-| Forms | `Field`, `Input`, `SearchInput`, `Textarea`, `Label`, `HelperText`, `Select`, `SearchSelect`, `Checkbox`, `Switch`, `RadioGroup`, `Slider`, `DateInput`, `Calendar`, `SegmentedControl`, `ChoiceGroup`, `FormFooter` |
-| Navigation | `Tabs` (`TabsList`, `TabsTrigger`, `TabsContent`), `Stepper`, `Pagination`, `paginationRange` |
-| Composition | `AppShell`, `Sidebar` (+ `SidebarBrand`, `SidebarSection`, `SidebarItem`, `SidebarUser`, `SidebarFooter`), `Topbar`, `Breadcrumbs`, `Page`, `PageHeader`, `Band`, `Grid` / `GridItem`, `Stack`, `Divider`, `Accordion`, `AspectRatio` |
-| Cards | `Card`, `FigureCard`, `ListCard`, `MeterCard`, `ActionCard`, `MediaCard`, `Kpi`, `Meter`, `InlineMeter`, `Sparkbars` |
-| Data | `Table` (`THead`, `TBody`, `Tr`, `Th`, `Td`, `TGroup`), `Board`, `BoardColumn`, `BoardCard`, `AzStrip` |
-| Charts | `BarChart`, `LineChart`, `AreaChart` |
-| Overlays | `Drawer`, `DrawerSection`, `DescriptionList`, `Dialog`, `Tooltip`, `Toaster` / `toast` |
-| Files | `Dropzone`, `UploadItem`, `useFileUpload`, `createSignedUrlUploader`, `formatBytes` |
-| States | `EmptyState`, `Skeleton`, `SampleFlag`, `Alert`, `Progress`, `ProgressCircle` |
-
-Icons are [Hugeicons](https://hugeicons.com) Stroke Rounded. Import the icon you need from
-`@hugeicons/core-free-icons` and pass it to `Icon` or any `icon*` prop.
-
-## Rules worth memorising
-
-- Text sits on `--surface` or `--surface-2`, never directly on `--canvas`.
-- A card is `--surface` + `--hairline` + `--radius-lg` + `--shadow-card`. If it needs a fifth property, the layout is wrong.
-- Product code never references a hue ramp. They appear only in `Chip`, the state glyphs of `Alert`, `Toast`, `HelperText` and `PriorityMark`, and a field's error. Every chip keeps its glyph: desaturate a screenshot and every state must still read.
-- Priority is glyph and ink only, never a filled chip.
-- Grid spans: 12, 8+4, 7+5, 6+6 (once per screen), 5+4+3, 4+4+4, 3×4 (counts only).
-- One hero figure per screen (`FigureCard hero`), one dense table per viewport, never two tables in adjacent bands, and a screen never opens with a table.
-- Table density follows the screen's job: relaxed for tables people read, default for the product, compact for a second table or a drawer.
-- Empty is an `EmptyState` with one sentence and one ghost button, never "No data". Loading is `Skeleton` blocks at their real sizes, never a spinner.
-- Motion is transform and opacity only. Everything is wrapped for `prefers-reduced-motion`.
+`npm run generate -w @puckoops/camelot-site` compiles these into `apps/site/generated/` (`catalog.json`,
+`pages.json`, `styles.json`, `registry.tsx`). That folder is rebuilt on every dev start and every build and is
+not committed. The site and its `/mcp` endpoint both read `catalog.json`, so the docs and the MCP answers cannot
+drift apart. To change what either says, edit the source file and rebuild.
 
 ## Develop
 
 ```bash
 npm install
-npm run dev        # the component playground on http://localhost:5178
-npm run storybook  # the documentation on http://localhost:6006
-npm test
-npm run typecheck
-npm run build      # dist/index.js, dist/index.d.ts, dist/styles.css, dist/tokens.css
+npm run dev
 ```
 
-The build is a single ESM bundle marked `"use client"`, with component styles compiled as CSS modules and
-prepended by the global sheets into `dist/styles.css`.
-# camelot
+`npm run dev` builds the package and starts the site on http://localhost:3030. It watches `apps/site/src/content`
+and the package sources and regenerates the data on every change; run `npm run dev -w @puckoops/camelot` beside
+it to rebuild the components as you edit them.
+
+```bash
+npm test
+npm run typecheck
+npm run lint
+npm run build
+```
+
+## Deploy the site to Vercel
+
+1. Import `LooneY2K/camelot` in Vercel.
+2. Set **Root Directory** to `apps/site`. `apps/site/vercel.json` installs from the repo root, and the build
+   compiles the package and the catalogue before Next.js.
+3. Deploy. The site serves the docs, `https://<domain>/mcp` is the MCP endpoint, and `/health` reports status.
+
+For a domain such as `camelot.puckoops.com`, add it to the Vercel project and create the CNAME record Vercel
+asks for at your DNS provider.
+
+## Ship the package
+
+`npm run pack:camelot` builds `@puckoops/camelot` and writes `puckoops-camelot-<version>.tgz` at the repo root,
+which an app can install directly.
+
+## Add a component page
+
+1. Build the component in `packages/camelot/src/components/ui/<Name>/` and export it from `src/index.ts`.
+2. Add its catalogue entry to `packages/camelot/src/catalog/components.ts`.
+3. Add `apps/site/src/content/components/<Name>.docs.tsx`. Its default export has `title: "ui/<Name>"`, and its
+   named exports are its stories: the first is the docs page's preview with the controls, the rest follow under
+   Examples, and each one also gets its own story page with the addon panel. `Button.docs.tsx` is the model.
+
+The generator stops with an error if a docs file names an entry the catalogue does not have.

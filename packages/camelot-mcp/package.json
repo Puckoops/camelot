@@ -1,0 +1,44 @@
+{
+  "name": "@puckoops/camelot-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An MCP server that serves the @puckoops/camelot catalogue, tokens and rules to AI coding assistants.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "camelot-mcp": "dist/server.js"
+  },
+  "files": [
+    "dist",
+    "data"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "catalog": "tsx scripts/build-catalog.ts",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "start": "node dist/server.js",
+    "start:stdio": "node dist/server.js --stdio",
+    "dev": "tsx watch --clear-screen=false --include ../camelot/src --include ../camelot/README.md --include ../../apps/site/src/content --exclude ./data scripts/dev.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "~1.31.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "postcss": "^8.5.6",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.3"
+  }
+}

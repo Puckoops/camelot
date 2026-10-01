@@ -1,0 +1,4 @@
+.frame { overflow: hidden; background: var(--surface-2); }
+.frame > :where(img, video, iframe, picture, svg) { display: block; width: 100%; height: 100%; object-fit: cover; border: 0; }
+.rounded { border-radius: var(--radius-md); }
+.framed { box-shadow: inset 0 0 0 var(--border-w) var(--hairline); }

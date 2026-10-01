@@ -1,0 +1,76 @@
+.root { display: flex; flex-direction: column; min-width: 0; }
+
+.list { display: flex; align-items: stretch; min-width: 0; }
+.list-underline { gap: var(--space-6); box-shadow: inset 0 calc(var(--border-w) * -1) 0 var(--hairline); overflow-x: auto; scrollbar-width: none; }
+.list-segmented {
+  align-self: flex-start;
+  height: var(--control-h);
+  padding: 2px;
+  border: var(--border-w) solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 18px;
+  white-space: nowrap;
+  cursor: pointer;
+  isolation: isolate;
+}
+.trigger:hover { color: var(--text-1); }
+.trigger[data-state="active"] { color: var(--text-1); font-weight: 500; }
+.trigger:disabled { cursor: default; opacity: 0.5; }
+.trigger:disabled:hover { color: var(--text-3); }
+.triggerLabel { min-width: 0; }
+.count { font-weight: 400; }
+
+.trigger-underline { height: 40px; padding: 0 2px; }
+.trigger-underline::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--text-1);
+  transform: scaleX(0);
+  transition: transform var(--dur-2) var(--ease-out);
+}
+.trigger-underline[data-state="active"]::after { transform: scaleX(1); }
+.trigger-underline:focus-visible { outline-offset: -2px; border-radius: var(--radius-xs); }
+
+.trigger-segmented { padding: 0 var(--space-3); border-radius: calc(var(--radius-sm) - 2px); }
+.trigger-segmented::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: var(--border-w) solid var(--hairline);
+  border-radius: inherit;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-in-out);
+}
+.trigger-segmented[data-state="active"]::before { opacity: 1; }
+
+.content { padding-top: var(--space-5); outline: none; }
+.content[data-state="active"] { animation: pk-tab-in var(--dur-2) var(--ease-out); }
+.content:focus-visible { outline: var(--focus-w) solid var(--focus-ring); outline-offset: var(--focus-offset); border-radius: var(--radius-xs); }
+
+@keyframes pk-tab-in { from { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .trigger-underline::after, .trigger-segmented::before { transition: none; }
+  .content[data-state="active"] { animation: none; }
+}

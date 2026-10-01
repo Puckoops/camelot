@@ -1,0 +1,69 @@
+.chart { display: flex; flex-direction: column; min-width: 0; }
+
+.legend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-bottom: var(--space-3); color: var(--text-3); }
+.legendItem { display: inline-flex; align-items: center; gap: var(--space-2); }
+.swatch { display: inline-block; flex: none; }
+.swatchBlock { width: 10px; height: 10px; }
+.swatchLine { width: 14px; height: 2px; }
+.swatchMain { background: var(--text-1); }
+.swatchQuiet { background: var(--n-04); }
+
+.frame { position: relative; width: 100%; min-width: 0; }
+.svg { display: block; max-width: none; overflow: visible; touch-action: pan-y; }
+.svg:focus { outline: none; }
+.svg:focus-visible { outline: var(--focus-w) solid var(--focus-ring); outline-offset: var(--focus-offset); border-radius: var(--radius-xs); }
+
+.grid { stroke: var(--hairline); stroke-width: 1; shape-rendering: crispEdges; }
+.baseline { stroke: var(--hairline-strong); stroke-width: 1; shape-rendering: crispEdges; }
+.crosshair { stroke: var(--hairline-strong); stroke-width: 1; shape-rendering: crispEdges; }
+
+.tick { fill: var(--text-4); font-family: var(--font-mono); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.tickActive { fill: var(--text-1); }
+
+.markMain { fill: var(--text-1); }
+.markQuiet { fill: var(--n-04); }
+
+.group { transition: opacity var(--dur-1) var(--ease-in-out); }
+.dim { opacity: 0.45; }
+
+.bar {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: pk-chart-grow var(--dur-4) var(--ease-out) both;
+}
+.barDown { transform-origin: 50% 0; }
+
+.line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: pk-chart-fade var(--dur-4) var(--ease-out) both; }
+.lineMain { stroke: var(--text-1); }
+.lineQuiet { stroke: var(--n-04); }
+.area { fill: var(--text-1); fill-opacity: 0.1; animation: pk-chart-fade var(--dur-4) var(--ease-out) both; }
+.dot { stroke: var(--surface); stroke-width: 2; }
+
+.tooltip {
+  position: absolute;
+  z-index: 2;
+  min-width: 136px;
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-w) solid var(--hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow-overlay);
+  pointer-events: none;
+  animation: pk-chart-fade var(--dur-1) var(--ease-out);
+}
+.tipLabel { margin-bottom: var(--space-1); color: var(--text-4); white-space: nowrap; }
+.tipRow { display: flex; align-items: center; gap: var(--space-2); white-space: nowrap; }
+.tipRow + .tipRow { margin-top: var(--space-1); }
+.tipValue { color: var(--text-1); font-weight: 500; }
+.tipName { font-size: 12px; line-height: 17px; color: var(--text-3); }
+.key { flex: none; width: 10px; height: 2px; }
+.keyMain { background: var(--text-1); }
+.keyQuiet { background: var(--n-04); }
+
+@keyframes pk-chart-grow { from { transform: scaleY(0); } }
+@keyframes pk-chart-fade { from { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bar, .line, .area, .tooltip { animation: none; }
+  .group { transition: none; }
+}

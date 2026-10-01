@@ -1,0 +1,22 @@
+{
+  "name": "camelot",
+  "private": true,
+  "description": "Camelot, the Puckoops design system: the @puckoops/camelot package, its MCP server and its documentation site.",
+  "workspaces": [
+    "packages/camelot",
+    "packages/camelot-mcp",
+    "apps/site"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npm run build -w @puckoops/camelot -w @puckoops/camelot-mcp && npm run dev -w @puckoops/camelot-site",
+    "build": "npm run build -w @puckoops/camelot-site",
+    "start": "npm run start -w @puckoops/camelot-site",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "pack:camelot": "npm pack -w @puckoops/camelot --pack-destination ."
+  }
+}

@@ -1,0 +1,6 @@
+.mark { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; line-height: 16px; color: var(--text-2); white-space: nowrap; }
+.p1 .glyph { color: var(--red-700); }
+.p2 .glyph { color: var(--amber-700); }
+.p3 .glyph { color: var(--text-4); }
+:global([data-theme="dark"]) .p1 .glyph { color: var(--red-300); }
+:global([data-theme="dark"]) .p2 .glyph { color: var(--amber-300); }

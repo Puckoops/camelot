@@ -1,0 +1,22 @@
+@keyframes pk-rise { from { opacity: 0; transform: translateY(14px); } }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    @media not print {
+      .reveal {
+        animation: pk-rise var(--dur-4) var(--ease-out) both;
+        animation-timeline: view();
+        animation-range: entry 8% cover 26%;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: var(--dur-1) !important;
+    transition-property: opacity !important;
+  }
+}

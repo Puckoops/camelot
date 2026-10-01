@@ -1,0 +1,14 @@
+*
+!package.json
+!package-lock.json
+!packages/camelot/package.json
+!packages/camelot/README.md
+!packages/camelot/src
+!packages/camelot-mcp
+!apps/site/package.json
+!apps/site/src/content
+**/node_modules
+**/dist
+**/.DS_Store
+**/*.tsbuildinfo
+packages/camelot-mcp/data
