@@ -120,17 +120,19 @@ Status glyphs (○ ◌ ◐ ◇ ↺ ✓ □ △ ◆) are not icons: use <Glyph sh
 
 export const appSetup = `// 1. Install
 //   npm install @puckoops/camelot @hugeicons/core-free-icons
+//   then copy geist/dist/fonts/geist-mono/GeistMono-Variable.woff2 (SIL OFL) to app/fonts/
 
 // 2. app/layout.tsx (Next.js App Router)
 import "@puckoops/camelot/styles.css";
 import "./globals.css";
 import { themeScript } from "@puckoops/camelot/helpers";
-import { Instrument_Sans, Instrument_Serif, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
+import localFont from "next/font/local";
 import { Providers } from "./providers";
 
 const sans = Instrument_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--pk-sans" });
 const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--pk-serif" });
-const mono = Geist_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--pk-mono" });
+const mono = localFont({ src: "./fonts/GeistMono-Variable.woff2", weight: "100 900", variable: "--pk-mono" });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

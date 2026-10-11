@@ -38,12 +38,13 @@ Peer dependencies: `react` and `react-dom` 19.
 ```tsx
 // app/layout.tsx (Next.js)
 import "@puckoops/camelot/styles.css";
-import { Instrument_Sans, Instrument_Serif, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider, Toaster, TooltipProvider, themeScript } from "@puckoops/camelot";
 
 const sans = Instrument_Sans({ subsets: ["latin"], variable: "--pk-sans" });
 const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--pk-serif" });
-const mono = Geist_Mono({ subsets: ["latin"], variable: "--pk-mono" });
+const mono = localFont({ src: "./fonts/GeistMono-Variable.woff2", weight: "100 900", variable: "--pk-mono" });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -63,6 +64,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }
 ```
+
+Geist Mono ships with the app: copy `GeistMono-Variable.woff2` from the `geist` package (SIL OFL) into
+`app/fonts/`. Turbopack builds can fail on the Geist Mono files Google Fonts serves.
 
 `next/font` hashes family names, so point the tokens at its variables once, after the stylesheet:
 
