@@ -131,5 +131,6 @@ export {
 export { formatBytes } from "./lib/bytes";
 export { AzStrip, type AzStripProps } from "./components/ui/AzStrip/AzStrip";
 export { TextLink, type TextLinkProps } from "./components/ui/TextLink/TextLink";
+export { GoogleSignIn, type GoogleSignInProps } from "./components/ui/GoogleSignIn/GoogleSignIn";
 export { ThemeProvider, useTheme, type ThemePreference, type ResolvedTheme } from "./components/ui/Theme/Theme";
 export { themeScript, themeScriptFor } from "./lib/themeScript";

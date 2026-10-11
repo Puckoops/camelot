@@ -540,6 +540,16 @@ export const catalog: CatalogEntry[] = [
     keywords: ["pager", "pages", "next page", "paging"],
   }),
   entry({
+    name: "GoogleSignIn",
+    category: "Actions",
+    summary: "Google's own sign-in button, drawn by Google's script in light or dark to follow the theme.",
+    exports: ["GoogleSignIn"],
+    whenToUse:
+      "Use GoogleSignIn above a sign-in or sign-up form, once per page, with the OAuth client ID whose authorised JavaScript origins list the page's origin. Send the credential it hands over to user-svc's POST /user/oauth as id_token, through the app's own server where it has one. Google draws the button, so its size and type are Google's.",
+    useInstead: [{ name: "Button", when: "for any other action, including email and password sign-in." }],
+    keywords: ["google", "sso", "oauth", "sign in with google", "login", "social"],
+  }),
+  entry({
     name: "TextLink",
     category: "Navigation",
     summary: "An underlined inline link, optionally with a forward or back arrow.",

@@ -1,0 +1,9 @@
+.slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  /* Google's iframe declares no color-scheme; under a dark one the browser paints it an opaque white box. */
+  color-scheme: light;
+}

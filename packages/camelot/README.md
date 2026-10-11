@@ -26,7 +26,7 @@ npm run pack:camelot
 Then, in the app:
 
 ```bash
-npm install ../camelot/puckoops-camelot-0.1.0.tgz
+npm install ../camelot/puckoops-camelot-0.2.0.tgz
 ```
 
 A packed build, rather than a workspace link, keeps a single copy of React in the app.

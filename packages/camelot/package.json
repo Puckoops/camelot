@@ -1,6 +1,6 @@
 {
   "name": "@puckoops/camelot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Camelot, the Puckoops design system: tokens, type and React components for Puckoops products.",
   "type": "module",
   "sideEffects": [
