@@ -38,12 +38,12 @@ Peer dependencies: `react` and `react-dom` 19.
 ```tsx
 // app/layout.tsx (Next.js)
 import "@puckoops/camelot/styles.css";
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, Geist_Mono } from "next/font/google";
 import { ThemeProvider, Toaster, TooltipProvider, themeScript } from "@puckoops/camelot";
 
 const sans = Instrument_Sans({ subsets: ["latin"], variable: "--pk-sans" });
 const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--pk-serif" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--pk-mono" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--pk-mono" });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -125,12 +125,12 @@ export const appSetup = `// 1. Install
 import "@puckoops/camelot/styles.css";
 import "./globals.css";
 import { themeScript } from "@puckoops/camelot/helpers";
-import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, Geist_Mono } from "next/font/google";
 import { Providers } from "./providers";
 
 const sans = Instrument_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--pk-sans" });
 const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--pk-serif" });
-const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--pk-mono" });
+const mono = Geist_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--pk-mono" });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
