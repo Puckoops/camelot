@@ -50,7 +50,7 @@ npm run build
 
 ## Deploy the site to Vercel
 
-1. Import `LooneY2K/camelot` in Vercel.
+1. Import `Puckoops/camelot` in Vercel.
 2. Set **Root Directory** to `apps/site`. `apps/site/vercel.json` installs from the repo root, and the build
    compiles the package and the catalogue before Next.js.
 3. Deploy. The site serves the docs, `https://<domain>/mcp` is the MCP endpoint, and `/health` reports status.

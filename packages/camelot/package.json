@@ -57,7 +57,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LooneY2K/camelot.git",
+    "url": "git+https://github.com/Puckoops/camelot.git",
     "directory": "packages/camelot"
   }
 }
